@@ -45,6 +45,4 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
     - name: Deploy Latest Datasette instance
       run: |
-        gcloud config set project precise-cabinet-280004
-        gcloud config set run/region us-west1
-        datasette publish cloudrun data.db --service sleeper-datasette --static -:static
+        datasette publish cloudrun nfl.db --service nfl-datasette --static -:static
