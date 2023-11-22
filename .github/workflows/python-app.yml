@@ -29,5 +29,6 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run setup_db
       run: python setup_db.py
+    - uses: stefanzweifel/git-auto-commit-action@v5
     - name: Echo finished
       run:  echo "Finished"
