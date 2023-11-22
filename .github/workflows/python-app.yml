@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   build:
@@ -36,3 +37,12 @@ jobs:
       with:
         workload_identity_provider: 'projects/910382441474/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
         service_account: 'my-service-account@precise-cabinet-280004.iam.gserviceaccount.com'
+    # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+    # - name: 'Set up Cloud SDK'
+    #   uses: 'google-github-actions/setup-gcloud@v1'
+    # - name: Deploy Latest Datasette instance
+    #   run: |
+    #     gcloud auth login
+    #     gcloud config set project precise-cabinet-280004
+    #     gcloud config set run/region us-west1
+    #     datasette publish cloudrun data.db --service sleeper-datasette --static -:static
