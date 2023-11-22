@@ -37,7 +37,7 @@ jobs:
       with:
         workload_identity_provider: 'projects/910382441474/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
         service_account: 'my-service-account@precise-cabinet-280004.iam.gserviceaccount.com'
-    Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+    # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
     - name: Deploy Latest Datasette instance

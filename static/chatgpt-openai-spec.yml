@@ -6,7 +6,7 @@ info:
 servers:
   - url: https://nfl-datasette-g6wckimtwq-uw.a.run.app/
 paths:
-  /data.json:
+  /nfl.json:
     get:
       operationId: query
       summary: Execute a SQLite SQL query against the content database
