@@ -4,7 +4,7 @@ info:
   description: Execute SQL queries against a Datasette database and return the results as JSON
   version: 'v1'
 servers:
-  - url: https://sleeper-datasette-g6wckimtwq-uw.a.run.app/
+  - url: https://nfl-datasette-g6wckimtwq-uw.a.run.app/
 paths:
   /data.json:
     get:

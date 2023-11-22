@@ -27,8 +27,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Run setup_db
-      run: python setup_db.py
-    - uses: stefanzweifel/git-auto-commit-action@v5
-    - name: Echo finished
-      run:  echo "Finished"
+    # - name: Run setup_db
+    #   run: python setup_db.py
+    # - uses: stefanzweifel/git-auto-commit-action@v5
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/910382441474/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+        service_account: 'my-service-account@precise-cabinet-280004.iam.gserviceaccount.com'
