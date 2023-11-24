@@ -38,8 +38,8 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/910382441474/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-        service_account: 'my-service-account@precise-cabinet-280004.iam.gserviceaccount.com'
+        workload_identity_provider: 'projects/910382441474/locations/global/workloadIdentityPools/github-actions-pool/providers/my-provider'
+        service_account: 'example-app-sa@precise-cabinet-280004.iam.gserviceaccount.com'
     # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
