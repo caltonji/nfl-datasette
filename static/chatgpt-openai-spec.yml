@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Datasette API
-  description: Execute SQL queries against a Datasette database and return the results as JSON
+  description: Execute SQL queries against a Datasette database and return the results as JSON.
   version: 'v1'
 servers:
   - url: https://nfl-datasette-g6wckimtwq-uw.a.run.app/
