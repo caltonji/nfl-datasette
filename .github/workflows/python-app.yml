@@ -34,15 +34,19 @@ jobs:
     # - name: Run setup_db
     #   run: python setup_db.py
     # - uses: stefanzweifel/git-auto-commit-action@v5
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        workload_identity_provider: 'projects/910382441474/locations/global/workloadIdentityPools/github-actions-pool/providers/my-provider'
-        service_account: 'example-app-sa@precise-cabinet-280004.iam.gserviceaccount.com'
+    # - id: 'auth'
+    #   name: 'Authenticate to Google Cloud'
+    #   uses: 'google-github-actions/auth@v1'
+    #   with:
+    #     workload_identity_provider: 'projects/910382441474/locations/global/workloadIdentityPools/github-actions-pool/providers/my-provider'
+    #     service_account: 'example-app-sa@precise-cabinet-280004.iam.gserviceaccount.com'
     # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
     - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v1'
+      uses: 'google-github-actions/setup-gcloud@v1
+      with:
+        version: '275.0.0'
+        service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
     - name: Deploy Latest Datasette instance
       run: |
         datasette publish cloudrun nfl.db --service nfl-datasette --static -:static
