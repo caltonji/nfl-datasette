@@ -32,4 +32,48 @@ df_player_stats = df_player_stats.drop(columns=drop_columns)
 conn = sqlite3.connect('nfl.db')
 df_player_stats.to_sql('players', conn, index=False, if_exists='replace')
 
+conn.execute("""CREATE VIEW IF NOT EXISTS players_yearly AS
+SELECT
+    player_id,
+    player_display_name,
+    position,
+    GROUP_CONCAT(DISTINCT recent_team) AS recent_teams,
+    season,
+    count(*) AS games_played,
+    SUM(completions) AS completions,
+    SUM(attempts) AS attempts,
+    SUM(passing_yards) AS passing_yards,
+    SUM(passing_tds) AS passing_tds,
+    SUM(interceptions) AS interceptions,
+    SUM(sacks) AS sacks,
+    SUM(sack_yards) AS sack_yards,
+    SUM(sack_fumbles) AS sack_fumbles,
+    SUM(sack_fumbles_lost) AS sack_fumbles_lost,
+    SUM(passing_air_yards) AS passing_air_yards,
+    SUM(passing_yards_after_catch) AS passing_yards_after_catch,
+    SUM(passing_first_downs) AS passing_first_downs,
+    SUM(passing_2pt_conversions) AS passing_2pt_conversions,
+    SUM(carries) AS carries,
+    SUM(rushing_yards) AS rushing_yards,
+    SUM(rushing_tds) AS rushing_tds,
+    SUM(rushing_fumbles) AS rushing_fumbles,
+    SUM(rushing_fumbles_lost) AS rushing_fumbles_lost,
+    SUM(rushing_first_downs) AS rushing_first_downs,
+    SUM(rushing_2pt_conversions) AS rushing_2pt_conversions,
+    SUM(receptions) AS receptions,
+    SUM(targets) AS targets,
+    SUM(receiving_yards) AS receiving_yards,
+    SUM(receiving_tds) AS receiving_tds,
+    SUM(receiving_fumbles) AS receiving_fumbles,
+    SUM(receiving_fumbles_lost) AS receiving_fumbles_lost,
+    SUM(receiving_air_yards) AS receiving_air_yards,
+    SUM(receiving_yards_after_catch) AS receiving_yards_after_catch,
+    SUM(receiving_first_downs) AS receiving_first_downs,
+    SUM(receiving_2pt_conversions) AS receiving_2pt_conversions,
+    SUM(special_teams_tds) AS special_teams_tds,
+    SUM(fantasy_points) AS fantasy_points,
+    SUM(fantasy_points_ppr) AS fantasy_points_ppr
+FROM players
+GROUP BY player_id, player_display_name, position, season;""")
+
 conn.close()
